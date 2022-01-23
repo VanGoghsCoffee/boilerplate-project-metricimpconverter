@@ -1,12 +1,27 @@
 function ConvertHandler() {
+
+  const divideIputRegEx = /[a-z]+|[^a-z]+/gi;
+  const isNumberRegex = /\d/;
+  const unitRegEx = /^((?!gal|l|mi|km|lbs|kg).)*$/gi;
   
   this.getNum = function(input) {
-    let result;
-    
-    return result;
+    let result = input.match(divideIputRegEx)[0];
+
+    const fractional = result.split('/');
+    if (fractional.length > 2) {
+      return 'invalid number';
+    }
+    else if (fractional.length > 1) {
+      result = Number(fractional[0]) / Number(fractional[1]);
+    }
+
+    if (isNumberRegex.test(result) == false)
+      result = 1;
+
+    return Number(result);
   };
   
-  this.getUnit = function(input) {
+  this.getUnit = function(input) {  
     let result;
     
     return result;
@@ -25,6 +40,8 @@ function ConvertHandler() {
   };
   
   this.convert = function(initNum, initUnit) {
+
+    const num = this.getNum(initNum);
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
