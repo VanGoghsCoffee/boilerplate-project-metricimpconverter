@@ -36,4 +36,40 @@ suite('Unit Tests', function(){
         assert.equal(convertHandler.getNum(input), 1);
     });
 
+    test('convertHandler should correctly read each valid input unit.', () => {
+        const validUnits = ['gal', 'L', 'mi', 'km', 'lbs', 'kg'];
+        const validInputs = ['1.8gal', '33.1L', '1.0mi', '2.1km', '18lbs', '1000kg'];
+
+        const resultUnits = validUnits.map(convertHandler.getUnit);
+        const resultOutputs = validInputs.map(convertHandler.getUnit);
+
+        assert.deepEqual(resultUnits, validUnits);
+        assert.deepEqual(resultOutputs, validUnits);
+    });
+
+    test('convertHandler should correctly return an error for an invalid input unit.', () => {
+
+        const input = '3/2/3gall';
+        assert.equal(convertHandler.getUnit(input), 'invalid unit');
+    });
+
+    test('convertHandler should return the correct return unit for each valid input unit.', () => {
+
+        const inputUnits = ['gal', 'L', 'mi', 'km', 'lbs', 'kg'];
+        const expectedOutputUnits = ['L', 'gal', 'km', 'mi', 'kg', 'lbs'];
+
+        const resultUnits = inputUnits.map(convertHandler.getReturnUnit);
+
+        assert.deepEqual(resultUnits, expectedOutputUnits);
+    });
+
+    test('convertHandler should correctly return the spelled-out string unit for each valid input unit.', () => {
+
+        const inputUnits = ['gal', 'L', 'mi', 'km', 'lbs', 'kg'];
+        const expectedSpelledOutValues = ['gallons', 'liters', 'miles', 'kilometers', 'pounds', 'kilograms'];
+
+        const resultSpelledOutValues = inputUnits.map(convertHandler.spellOutUnit);
+
+        assert.deepEqual(resultSpelledOutValues, expectedSpelledOutValues);
+    });
 });
