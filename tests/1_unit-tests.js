@@ -72,4 +72,64 @@ suite('Unit Tests', function(){
 
         assert.deepEqual(resultSpelledOutValues, expectedSpelledOutValues);
     });
+
+    test('convertHandler should correctly convert gal to L', () => {
+        const inputUnit = 'gal';
+        const inputNumber = 2.8;
+        const expectedNumber = 10.59915;
+
+        const result = convertHandler.convert(inputNumber, inputUnit);
+
+        assert.equal(result, expectedNumber);
+    });
+
+    test('convertHandler should correctly convert L to gal', () => {
+        const inputUnit = 'l';
+        const inputNumber = 2.8;
+        const expectedNumber = 0.73968;
+
+        const result = convertHandler.convert(inputNumber, inputUnit);
+
+        assert.equal(result, expectedNumber);
+    });
+
+    test('convertHandler should correctly convert mi to km', () => {
+        const inputUnit = 'mi';
+        const inputNumber = 2.8;
+        const expectedNumber = 4.50615;
+
+        const result = convertHandler.convert(inputNumber, inputUnit);
+
+        assert.equal(result, expectedNumber);
+    });
+
+    test('convertHandler should correctly convert km to mi', () => {
+        const inputUnit = 'km';
+        const inputNumber = 2.8;
+        const expectedNumber = 1.73984;
+
+        const result = convertHandler.convert(inputNumber, inputUnit);
+
+        assert.equal(result, expectedNumber);
+    });
+
+    test('convertHandler should correctly convert lbs to kg', () => {
+        const inputUnit = 'lbs';
+        const inputNumber = 2.8;
+        const expectedNumber = 1.27006;
+
+        const result = convertHandler.convert(inputNumber, inputUnit);
+
+        assert.equal(result, expectedNumber);
+    });
+
+    test('convertHandler should correctly convert kg to lbs', () => {
+        const inputUnit = 'kg';
+        const inputNumber = 2.8;
+        const expectedNumber = 6.17295;
+
+        const result = convertHandler.convert(inputNumber, inputUnit);
+
+        assert.equal(result, expectedNumber);
+    });
 });
